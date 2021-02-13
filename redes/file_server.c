@@ -75,7 +75,7 @@ void send_file(int sockfd, req_t req) {
 
 void create_file(int sockfd, req_t req) {
 	int cfile;
-	cfile = creat(req.filename, S_IWUSR);
+	cfile = creat(req.filename, 0777);
 	if (cfile == -1) {
 		perror("create");
 		send(sockfd, COD_ERROR_2_CFILE, strlen(COD_ERROR_2_CFILE), 0);
@@ -99,7 +99,17 @@ void remove_file(int sockfd, req_t req) {
 	return;
 }
 
-void update_file(int sockfd, req_t req) {
+void append_file(int sockfd, req_t req) {
+	int afile;
+	afile = open(req.filename, O_RDWR | O_TRUNC, 0777);
+	if (afile == -1) {
+		perror("append");
+		send(sockfd, COD_ERROR_4_AFILE, strlen(COD_ERROR_4_AFILE), 0);
+		return;
+	}
+	send(sockfd, COD_OK_7_AFILE, strlen(COD_OK_7_AFILE), 0);
+	close(afile);
+	return;
 }
 
 void proc_request(int sockfd, req_t req){
@@ -114,7 +124,7 @@ void proc_request(int sockfd, req_t req){
 		remove_file(sockfd, req);
 	} else if (strcmp(req.method, REQ_APPEND) == 0) {
 		send(sockfd, COD_OK_3_APPEND, strlen(COD_OK_3_APPEND), 0);
-		//update_file
+		append_file(sockfd, req);
 	} else {
 		send(sockfd, COD_ERROR_0_METHOD, strlen(COD_ERROR_0_METHOD), 0);
 	}
@@ -141,6 +151,7 @@ void* recv_request(void* arg) {
 		printf("Request from %s:%d\n method: %s\n filename: %s\n", inet_ntoa(args.cli_addr.sin_addr), ntohs(args.cli_addr.sin_port), req.method, req.filename);
 		proc_request(args.sockac, req);
 	}
+	send(args.sockac, "\n", strlen("\n"), 0);
 	close(args.sockac);
 	pthread_exit(0);
 }
