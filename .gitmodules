@@ -1,0 +1,3 @@
+[submodule "PCD/GameOfLife"]
+	path = PCD/GameOfLife
+	url = https://github.com/fad-andrade/GameOfLife.git
