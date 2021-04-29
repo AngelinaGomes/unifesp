@@ -4,3 +4,6 @@
 [submodule "AOC/SegueFaixaMIPS"]
 	path = AOC/SegueFaixaMIPS
 	url = https://github.com/fad-andrade/SegueFaixaMIPS.git
+[submodule "ES/projeto"]
+	path = ES/projeto
+	url = https://github.com/abnercanellas/ENS-UNIFESP-2020-2.git
