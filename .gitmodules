@@ -1,3 +1,6 @@
 [submodule "PCD/GameOfLife"]
 	path = PCD/GameOfLife
 	url = https://github.com/fad-andrade/GameOfLife.git
+[submodule "AOC/SegueFaixaMIPS"]
+	path = AOC/SegueFaixaMIPS
+	url = https://github.com/fad-andrade/SegueFaixaMIPS.git
