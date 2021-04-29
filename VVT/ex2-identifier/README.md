@@ -14,8 +14,8 @@ Implemente a função isValid(string): boolean que recebe uma string e retorna v
 | ------------- | ------------- | ------------- |
 | starts with letter | yes **(1)** | no **(2)** |
 | only letter or numbers  | yes **(3)** | no **(4)** |
-| identifier size  | `1 ≤ |id| ≤ 6` **(5)** | `|id| = 0` **(6)** |
-|  |  | `|id| > 6` **(7)** |
+| identifier size  | 1 ≤ &#124;id&#124; ≤ 6 **(5)** | &#124;id&#124; = 0 **(6)** |
+|  |  | &#124;id&#124; > 6 **(7)** |
 
 | Test Cases | Covered Classes |
 | ------------- | ------------- |
